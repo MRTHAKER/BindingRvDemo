@@ -18,14 +18,16 @@ object BindAdapters {
         click: RvClickListener
     ) {
         if (list != null) {
-            view.setItemViewCacheSize(list.size)
+            val x= mutableListOf<T>()
+            list.forEach {
+                x.add(it)
+            }
             view.adapter = GlobalAdapter(
                 layout,
-                list.toMutableList(),
+                x,
                 BR.model,
                 clickListener = click,
-                mapOf(BR.itemclick to click)
-            )
+                mapOf(BR.itemclick to click))
         }
     }
 

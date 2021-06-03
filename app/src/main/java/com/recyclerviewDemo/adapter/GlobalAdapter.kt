@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.RecyclerView
 import com.recyclerviewDemo.BR
 import com.recyclerviewDemo.RvClickListener
 
@@ -16,7 +17,6 @@ class GlobalAdapter<T>(
     private val brs :Map<Int,Any>?=null
 ) : androidx.recyclerview.widget.RecyclerView.Adapter<GlobalAdapter<T>.ViewHolder>() {
     private lateinit var binding: ViewDataBinding
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         binding =
             DataBindingUtil.inflate(LayoutInflater.from(parent.context), layoutId, parent, false)

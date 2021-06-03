@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="com.recyclerviewDemo.model.Articles" />
+            type="com.recyclerviewDemo.model.StringData" />
 
         <variable
             name="itemclick"
@@ -34,17 +34,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.google.android.material.imageview.ShapeableImageView
+            <!--<com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_news_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:padding="2dp"
-                urlToImage="@{model.urlToImage}"
+                urlToImage="@{model.title}"
                 android:layout_margin="5dp"
                 android:scaleType="fitXY"
-                app:shapeAppearanceOverlay="@style/CircleImage" />
+                app:shapeAppearanceOverlay="@style/CircleImage" />-->
 
-            <TextView
+           <TextView
                 android:id="@+id/tv_news_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,20 +53,20 @@
                 android:layout_margin="5dp"
                 android:textAppearance="?attr/textAppearanceHeadline6" />
 
-            <TextView
-                android:id="@+id/tv_news_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="@{model.description}"
-                android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary" />
+            <!--   <TextView
+                  android:id="@+id/tv_news_description"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="5dp"
+                  android:text="@{model.description}"
+                  android:textAppearance="?attr/textAppearanceBody2"
+                  android:textColor="?android:attr/textColorSecondary" />-->
 
             <androidx.recyclerview.widget.RecyclerView
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="horizontal"
                 layout="@{@layout/row_news_nested_item_rv}"
-                list="@{model.article}"
+                list="@{model.second}"
                 click="@{itemclick}"
                 android:layout_width="match_parent"
                 android:layout_margin="5dp"

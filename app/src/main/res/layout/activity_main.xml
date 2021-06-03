@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="com.recyclerviewDemo.model.ArticlesRes" />
+            type="com.recyclerviewDemo.model.Listing" />
 
         <variable
             name="click"
@@ -40,7 +40,7 @@
             android:id="@+id/rv_news"
             click="@{itemclick}"
             layout="@{@layout/row_news_item_rv}"
-            list="@{model.articles}"
+            list="@{model.first}"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,7 +52,6 @@
             app:layout_constraintTop_toBottomOf="@id/rv_title"
             tools:context=".MainActivity"
             tools:listitem="@layout/row_news_nested_item_rv">
-
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
 </layout>
