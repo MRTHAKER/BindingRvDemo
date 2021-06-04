@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="com.recyclerviewDemo.model.StringData" />
+            type="com.recyclerviewDemo.model.Listing.StringData" />
 
         <variable
             name="itemclick"
@@ -44,13 +44,13 @@
                 android:scaleType="fitXY"
                 app:shapeAppearanceOverlay="@style/CircleImage" />-->
 
-           <TextView
+            <TextView
                 android:id="@+id/tv_news_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:onClick="@{click::onClick}"
                 android:text="@{model.title}"
-                android:layout_margin="5dp"
                 android:textAppearance="?attr/textAppearanceHeadline6" />
 
             <!--   <TextView
@@ -63,15 +63,16 @@
                   android:textColor="?android:attr/textColorSecondary" />-->
 
             <androidx.recyclerview.widget.RecyclerView
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="horizontal"
+                click="@{itemclick}"
                 layout="@{@layout/row_news_nested_item_rv}"
                 list="@{model.second}"
-                click="@{itemclick}"
+                size="@{model.second.size()}"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                tools:listitem="@layout/row_news_nested_item_rv"
-                android:layout_height="wrap_content"/>
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/row_news_nested_item_rv" />
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>

@@ -41,9 +41,10 @@
             click="@{itemclick}"
             layout="@{@layout/row_news_item_rv}"
             list="@{model.first}"
-            android:layout_margin="10dp"
+            size="@{model.first.size()}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -51,7 +52,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rv_title"
             tools:context=".MainActivity"
-            tools:listitem="@layout/row_news_nested_item_rv">
-        </androidx.recyclerview.widget.RecyclerView>
+            tools:listitem="@layout/row_news_nested_item_rv"/>
     </LinearLayout>
 </layout>

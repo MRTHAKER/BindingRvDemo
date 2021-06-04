@@ -1,5 +1,7 @@
 package com.recyclerviewDemo.model
 
+import androidx.lifecycle.MutableLiveData
+
 data class ArticlesRes(val totalResults: Int, val articles: List<Articles>)
 data class Articles(
     val title: String, val urlToImage: String, val description: String, val url: String,
@@ -11,8 +13,9 @@ data class CandidateJobDetail(val candidateName: String, val jobs: List<Job>)
 data class Job(val name: String, val previousJob: List<PreviousJob>)
 data class PreviousJob(val jobName: String, val friendsAtJob: List<String>)
 
-data class Listing(val first: List<StringData>)
+data class Listing(val first: MutableLiveData<List<StringData>>) {
+    data class StringData(var title: String, val second: MutableLiveData<List<StringTwo>>) {
+        data class StringTwo(var description: String)
+    }
+}
 
-data class StringData(var title:String, val second: List<StringTwo>)
-
-data class StringTwo(var description: String)

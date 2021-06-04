@@ -6,14 +6,14 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.recyclerviewDemo.adapter.GlobalAdapter
 import com.recyclerviewDemo.databinding.ActivityMainBinding
-import com.recyclerviewDemo.model.*
+import com.recyclerviewDemo.model.Listing
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var binding: ActivityMainBinding
-    lateinit var newsList: List<Articles>
     lateinit var mainClickListener: RvClickListener
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,26 +24,60 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         //setAdapter()
         binding.click = this@MainActivity
         binding.model = Listing(
-            listOf(
-                StringData(
-                    "First Data",
-                    listOf(
-                        StringTwo("Second Data"),
-                        StringTwo("Second Data"),
-                        StringTwo("Second Data"),
-                        StringTwo("Second Data")
+            MutableLiveData(
+                listOf(
+                    Listing.StringData(
+                        "First Data",
+                        MutableLiveData(
+                            listOf(
+                                Listing.StringData.StringTwo("Second Data"),
+                                Listing.StringData.StringTwo("Second Data"),
+                                Listing.StringData.StringTwo("Second Data"),
+                                Listing.StringData.StringTwo("Second Data")
+                            )
+                        )
+                    ),
+                    Listing.StringData(
+                        "Second Data",
+                        MutableLiveData(listOf(Listing.StringData.StringTwo("Third Data")))
+                    ),
+                    Listing.StringData(
+                        "Third Data",
+                        MutableLiveData(listOf(Listing.StringData.StringTwo("Forth Data")))
+                    ),
+                    Listing.StringData(
+                        "Forth Data",
+                        MutableLiveData(listOf(Listing.StringData.StringTwo("Fifth Data")))
+                    ),
+                    Listing.StringData(
+                        "Fifth Data",
+                        MutableLiveData(listOf(Listing.StringData.StringTwo("Sixth Data")))
+                    ),
+                    Listing.StringData(
+                        "Sixth Data",
+                        MutableLiveData(listOf(Listing.StringData.StringTwo("Seventh Data")))
+                    ),
+                    Listing.StringData(
+                        "Seventh Data",
+                        MutableLiveData(listOf(Listing.StringData.StringTwo("Eighth Data")))
+                    ),
+                    Listing.StringData(
+                        "Eighth Data",
+                        MutableLiveData(listOf(Listing.StringData.StringTwo("Nine Data")))
+                    ),
+                    Listing.StringData(
+                        "Nine Data",
+                        MutableLiveData(listOf(Listing.StringData.StringTwo("Tenth Data")))
+                    ),
+                    Listing.StringData(
+                        "Tenth Data",
+                        MutableLiveData(listOf(Listing.StringData.StringTwo("Eleventh Data")))
+                    ),
+                    Listing.StringData(
+                        "Eleventh Data",
+                        MutableLiveData(listOf(Listing.StringData.StringTwo("twevlth Data")))
                     )
-                ),
-                StringData("Second Data", listOf(StringTwo("Third Data"))),
-                StringData("Third Data", listOf(StringTwo("Forth Data"))),
-                StringData("Forth Data", listOf(StringTwo("Fifth Data"))),
-                StringData("Fifth Data", listOf(StringTwo("Sixth Data"))),
-                StringData("Sixth Data", listOf(StringTwo("Seventh Data"))),
-                StringData("Seventh Data", listOf(StringTwo("Eighth Data"))),
-                StringData("Eighth Data", listOf(StringTwo("Nine Data"))),
-                StringData("Nine Data", listOf(StringTwo("Tenth Data"))),
-                StringData("Tenth Data", listOf(StringTwo("Eleventh Data"))),
-                StringData("Eleventh Data", listOf(StringTwo("twevlth Data")))
+                )
             )
         )
         /*CoroutineScope(Dispatchers.IO).launch {
@@ -83,33 +117,29 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         }
                     }
                 }*/
-                    is StringTwo -> {
+                    is Listing.StringData.StringTwo -> {
                         when (view.id) {
                             R.id.tv_nested_news_title -> {
-                                /*view as TextView
-                                adapter.mutableList.removeAt(holder.adapterPosition)
-                                adapter.notifyItemRemoved(holder.adapterPosition)
-                                adapter.notifyItemRangeChanged(holder.adapterPosition,adapter.mutableList.size)
-                                adapter.notifyDataSetChanged()
+                                view as TextView
+                                binding.model?.first?.value!!.toMutableList()[(binding.rvNews.adapter as GlobalAdapter<Any>).holderr.adapterPosition].second.value!!.toMutableList()
+                                    .removeAt(position)
+                                adapter.mutableList.value!!.removeAt(position)
+                                adapter.notifyItemRemoved(position)
                                 Toast.makeText(
                                     this@MainActivity,
-                                    "${adapter.mutableList.size}",
+                                    "${adapter.mutableList.value!!.size}",
                                     Toast.LENGTH_SHORT
-                                ).show()*/
-                                view as TextView
-                                view.setTextColor(Color.CYAN)
-                                item.description="OH Okay"
-                                adapter.notifyDataSetChanged()
+                                ).show()
                             }
                         }
                     }
-                    is StringData -> {
+                    is Listing.StringData -> {
                         when (view.id) {
                             R.id.tv_news_title -> {
                                 view as TextView
                                 view.setTextColor(Color.CYAN)
-                                item.title="OH NO!"
-                                adapter.notifyDataSetChanged()
+                                item.title = "OH NO!"
+                                adapter.notifyItemChanged(position)
                             }
                         }
                     }

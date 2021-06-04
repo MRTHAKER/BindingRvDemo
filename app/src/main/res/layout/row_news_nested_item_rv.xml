@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="com.recyclerviewDemo.model.StringTwo" />
+            type="com.recyclerviewDemo.model.Listing.StringData.StringTwo" />
 
         <variable
             name="click"
@@ -26,8 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:clickable="true"
-        android:onClick="@{click::onClick}"
         android:focusable="true"
+        android:onClick="@{click::onClick}"
         app:cardElevation="10dp">
 
         <LinearLayout
@@ -53,14 +53,14 @@
                 android:text="@{model.description}"
                 android:textAppearance="?attr/textAppearanceHeadline6" />
 
-           <!-- <TextView
-                android:id="@+id/tv_nested_news_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{model.description}"
-                android:padding="5dp"
-                android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary" />-->
+            <!-- <TextView
+                 android:id="@+id/tv_nested_news_description"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:text="@{model.description}"
+                 android:padding="5dp"
+                 android:textAppearance="?attr/textAppearanceBody2"
+                 android:textColor="?android:attr/textColorSecondary" />-->
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
