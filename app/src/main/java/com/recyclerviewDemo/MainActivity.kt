@@ -2,6 +2,7 @@ package com.recyclerviewDemo
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -121,9 +122,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         when (view.id) {
                             R.id.tv_nested_news_title -> {
                                 view as TextView
-                                binding.model?.first?.value!!.toMutableList()[(binding.rvNews.adapter as GlobalAdapter<Any>).holderr.adapterPosition].second.value!!.toMutableList()
-                                    .removeAt(position)
+                                val parent = binding.rvNews.adapter as GlobalAdapter<Any>
                                 adapter.mutableList.value!!.removeAt(position)
+                                binding.model?.first?.value!![parent.holderr.adapterPosition].second.value=
+                                    emptyList()
+                                parent.binding?.notifyPropertyChanged(BR.model)
+                                //adapter.mutableList.value!!.removeAt(position)
                                 adapter.notifyItemRemoved(position)
                                 Toast.makeText(
                                     this@MainActivity,
@@ -139,6 +143,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                                 view as TextView
                                 view.setTextColor(Color.CYAN)
                                 item.title = "OH NO!"
+                                binding.model!!.first.value!!.toMutableList()[position] = item
                                 adapter.notifyItemChanged(position)
                             }
                         }

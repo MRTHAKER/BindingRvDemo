@@ -26,7 +26,6 @@ class GlobalAdapter<T>(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holderr=holder
-        holder.setIsRecyclable(false)
         holder.binding.setVariable(br, mutableList.value!![holder.adapterPosition])
         brs?.forEach {
             binding?.setVariable(it.key, it.value)
@@ -34,7 +33,7 @@ class GlobalAdapter<T>(
         holder.binding.setVariable(
             BR.click,
             View.OnClickListener { v ->
-                clickListener?.click(
+                clickListener.click(
                     v,
                     mutableList.value!![holder.adapterPosition],
                     holder.adapterPosition,
