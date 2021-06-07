@@ -42,10 +42,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         when (view.id) {
                             R.id.rv_nested_news_main_cv -> {
                                 view as MaterialCardView
-                                adapter.mutableList.removeAt(position)
-                                adapter.notifyItemRemoved(position)
+                                adapter as GlobalAdapter<Articles>
+                                adapter.mutableList.map {
+                                    it.isChecked=false
+                                }
+                                item.isChecked=true
+                                adapter.notifyItemRangeChanged(0,adapter.itemCount)
                             }
-
                         }
                     }
                     is NewsCategory -> {

@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.DiffUtil.*
 import androidx.recyclerview.widget.RecyclerView
 import com.recyclerviewDemo.BR
 import com.recyclerviewDemo.RvClickListener

@@ -1,22 +1,11 @@
 package com.recyclerviewDemo.model
 
-import androidx.lifecycle.MutableLiveData
-
-data class ArticlesRes(val totalResults: Int, val articles: List<Articles>)
 data class Articles(
-    val title: String, val urlToImage: String, val description: String
+    val title: String,
+    val urlToImage: String,
+    val description: String,
+    var isChecked: Boolean = false
 )
-
-
-data class CandidateJobDetail(val candidateName: String, val jobs: List<Job>)
-data class Job(val name: String, val previousJob: List<PreviousJob>)
-data class PreviousJob(val jobName: String, val friendsAtJob: List<String>)
-
-data class Listing(val first: MutableLiveData<List<StringData>>) {
-    data class StringData(var title: String, val second: MutableLiveData<List<StringTwo>>) {
-        data class StringTwo(var description: String)
-    }
-}
 
 data class News(
     val category: List<NewsCategory> = listOf(
@@ -93,20 +82,20 @@ data class News(
             )
         ),
         NewsCategory(
-            "Entertainment",
+            "International",
             listOf(
                 Articles(
-                    "Entertainment Article Title 1",
+                    "International Article Title 1",
                     "https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo1.png",
-                    "Entertainment Article Description 1"
+                    "International Article Description 1"
                 ), Articles(
-                    "Entertainment Article Title 2",
+                    "International Article Title 2",
                     "https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo2.png",
-                    "Entertainment Article Description 2"
+                    "International Article Description 2"
                 ), Articles(
-                    "Entertainment Article Title 3",
+                    "International Article Title 3",
                     "https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo3.png",
-                    "Entertainment Article Description 3"
+                    "International Article Description 3"
                 )
             )
         )

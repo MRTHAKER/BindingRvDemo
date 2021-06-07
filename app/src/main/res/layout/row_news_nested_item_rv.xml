@@ -28,6 +28,7 @@
         android:clickable="true"
         android:focusable="true"
         android:onClick="@{click::onClick}"
+        app:cardBackgroundColor="@{model.isChecked?@color/teal_200:@color/white}"
         app:cardElevation="10dp">
 
         <LinearLayout
