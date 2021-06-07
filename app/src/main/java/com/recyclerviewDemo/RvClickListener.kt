@@ -9,7 +9,6 @@ interface RvClickListener {
         view: View,
         item: Any?,
         position: Int,
-        holder: RecyclerView.ViewHolder,
         adapter: GlobalAdapter<Any>
     )
 }

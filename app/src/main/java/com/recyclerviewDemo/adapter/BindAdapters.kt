@@ -13,26 +13,24 @@ object BindAdapters {
     var counter=0
     var target=0
     @JvmStatic
-    @BindingAdapter("layout", "list", "click","size", requireAll = false)
+    @BindingAdapter("layout", "list", "click")
     fun <T> setRecyclerView(
         view: RecyclerView,
         layout: Int,
-        list: MutableLiveData<List<T>>?,
-        click: RvClickListener,
-        size:Int
+        list: List<T>?,
+        click: RvClickListener
     ) {
         if (list != null) {
-            target += size
             counter++
             val adapter = GlobalAdapter(
                 layout,
-                MutableLiveData(list.value!!.toMutableList()),
+                list.toMutableList(),
                 BR.model,
                 clickListener = click,
                 mapOf(BR.itemclick to click)
             )
             view.adapter = adapter
-            Toast.makeText(view.context,"Size of list $counter",Toast.LENGTH_SHORT).show()
+            Toast.makeText(view.context,"$counter",Toast.LENGTH_SHORT).show()
         }
     }
 

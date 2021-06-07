@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="com.recyclerviewDemo.model.Listing.StringData" />
+            type="com.recyclerviewDemo.model.NewsCategory" />
 
         <variable
             name="itemclick"
@@ -25,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:onClick="@{click::onClick }"
         android:clickable="true"
         android:focusable="true"
         app:cardElevation="10dp">
@@ -34,39 +35,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!--<com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/iv_news_image"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:padding="2dp"
-                urlToImage="@{model.title}"
-                android:layout_margin="5dp"
-                android:scaleType="fitXY"
-                app:shapeAppearanceOverlay="@style/CircleImage" />-->
-
             <TextView
                 android:id="@+id/tv_news_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:onClick="@{click::onClick}"
-                android:text="@{model.title}"
+                android:text="@{model.name}"
                 android:textAppearance="?attr/textAppearanceHeadline6" />
-
-            <!--   <TextView
-                  android:id="@+id/tv_news_description"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_margin="5dp"
-                  android:text="@{model.description}"
-                  android:textAppearance="?attr/textAppearanceBody2"
-                  android:textColor="?android:attr/textColorSecondary" />-->
 
             <androidx.recyclerview.widget.RecyclerView
                 click="@{itemclick}"
                 layout="@{@layout/row_news_nested_item_rv}"
-                list="@{model.second}"
-                size="@{model.second.size()}"
+                list="@{model.list}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"

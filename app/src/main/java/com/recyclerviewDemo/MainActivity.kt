@@ -1,17 +1,19 @@
 package com.recyclerviewDemo
 
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.card.MaterialCardView
 import com.recyclerviewDemo.adapter.GlobalAdapter
 import com.recyclerviewDemo.databinding.ActivityMainBinding
-import com.recyclerviewDemo.model.Listing
+import com.recyclerviewDemo.model.Articles
+import com.recyclerviewDemo.model.News
+import com.recyclerviewDemo.model.NewsCategory
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var binding: ActivityMainBinding
@@ -22,76 +24,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
         setListeners()
         binding.itemclick = mainClickListener
-        //setAdapter()
         binding.click = this@MainActivity
-        binding.model = Listing(
-            MutableLiveData(
-                listOf(
-                    Listing.StringData(
-                        "First Data",
-                        MutableLiveData(
-                            listOf(
-                                Listing.StringData.StringTwo("Second Data"),
-                                Listing.StringData.StringTwo("Second Data"),
-                                Listing.StringData.StringTwo("Second Data"),
-                                Listing.StringData.StringTwo("Second Data")
-                            )
-                        )
-                    ),
-                    Listing.StringData(
-                        "Second Data",
-                        MutableLiveData(listOf(Listing.StringData.StringTwo("Third Data")))
-                    ),
-                    Listing.StringData(
-                        "Third Data",
-                        MutableLiveData(listOf(Listing.StringData.StringTwo("Forth Data")))
-                    ),
-                    Listing.StringData(
-                        "Forth Data",
-                        MutableLiveData(listOf(Listing.StringData.StringTwo("Fifth Data")))
-                    ),
-                    Listing.StringData(
-                        "Fifth Data",
-                        MutableLiveData(listOf(Listing.StringData.StringTwo("Sixth Data")))
-                    ),
-                    Listing.StringData(
-                        "Sixth Data",
-                        MutableLiveData(listOf(Listing.StringData.StringTwo("Seventh Data")))
-                    ),
-                    Listing.StringData(
-                        "Seventh Data",
-                        MutableLiveData(listOf(Listing.StringData.StringTwo("Eighth Data")))
-                    ),
-                    Listing.StringData(
-                        "Eighth Data",
-                        MutableLiveData(listOf(Listing.StringData.StringTwo("Nine Data")))
-                    ),
-                    Listing.StringData(
-                        "Nine Data",
-                        MutableLiveData(listOf(Listing.StringData.StringTwo("Tenth Data")))
-                    ),
-                    Listing.StringData(
-                        "Tenth Data",
-                        MutableLiveData(listOf(Listing.StringData.StringTwo("Eleventh Data")))
-                    ),
-                    Listing.StringData(
-                        "Eleventh Data",
-                        MutableLiveData(listOf(Listing.StringData.StringTwo("twevlth Data")))
-                    )
-                )
-            )
-        )
-        /*CoroutineScope(Dispatchers.IO).launch {
-            //val x = ArticlesService.articlesInstance.getNews("India")
-            newsList = x.articles
-            newsList.forEach {
-                it.article = x.articles
-            }
-            withContext(Dispatchers.Main) {
-                //adapter.addData(newsList)
-                binding.model = x
-            }
-        }*/
+        binding.model = News()
 
     }
 
@@ -101,50 +35,25 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 view: View,
                 item: Any?,
                 position: Int,
-                holder: RecyclerView.ViewHolder,
-                adapter: GlobalAdapter<Any>
+                adapter: GlobalAdapter<Any>,
             ) {
                 when (item) {
-                    /*is Articles -> {
+                    is Articles -> {
                         when (view.id) {
                             R.id.rv_nested_news_main_cv -> {
-                                adapter as GlobalAdapter<Articles>
                                 view as MaterialCardView
-                                Toast.makeText(this@MainActivity, "card click", Toast.LENGTH_SHORT)
-                                    .show()
                                 adapter.mutableList.removeAt(position)
                                 adapter.notifyItemRemoved(position)
                             }
+
                         }
                     }
-                }*/
-                    is Listing.StringData.StringTwo -> {
+                    is NewsCategory -> {
                         when (view.id) {
-                            R.id.tv_nested_news_title -> {
-                                view as TextView
-                                val parent = binding.rvNews.adapter as GlobalAdapter<Any>
-                                adapter.mutableList.value!!.removeAt(position)
-                                binding.model?.first?.value!![parent.holderr.adapterPosition].second.value=
-                                    emptyList()
-                                parent.binding?.notifyPropertyChanged(BR.model)
-                                //adapter.mutableList.value!!.removeAt(position)
-                                adapter.notifyItemRemoved(position)
-                                Toast.makeText(
-                                    this@MainActivity,
-                                    "${adapter.mutableList.value!!.size}",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                        }
-                    }
-                    is Listing.StringData -> {
-                        when (view.id) {
-                            R.id.tv_news_title -> {
-                                view as TextView
-                                view.setTextColor(Color.CYAN)
-                                item.title = "OH NO!"
-                                binding.model!!.first.value!!.toMutableList()[position] = item
-                                adapter.notifyItemChanged(position)
+                            R.id.rv_news_main_cv -> {
+                                view as MaterialCardView
+                                view.background.setTint(Color.CYAN)
+                                Toast.makeText(this@MainActivity,"$position",Toast.LENGTH_SHORT).show()
                             }
                         }
                     }

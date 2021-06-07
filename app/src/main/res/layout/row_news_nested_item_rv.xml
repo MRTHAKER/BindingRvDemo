@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="com.recyclerviewDemo.model.Listing.StringData.StringTwo" />
+            type="com.recyclerviewDemo.model.Articles" />
 
         <variable
             name="click"
@@ -35,14 +35,14 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <!--<com.google.android.material.imageview.ShapeableImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_nested_news_image"
+                urlToImage="@{model.urlToImage}"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                urlToImage="@{model.urlToImage}"
                 android:padding="5dp"
                 android:scaleType="fitXY"
-                app:shapeAppearanceOverlay="@style/CircleImage" />-->
+                app:shapeAppearanceOverlay="@style/CircleImage" />
 
             <TextView
                 android:id="@+id/tv_nested_news_title"
@@ -50,17 +50,17 @@
                 android:layout_height="wrap_content"
                 android:onClick="@{click::onClick}"
                 android:padding="5dp"
-                android:text="@{model.description}"
+                android:text="@{model.title}"
                 android:textAppearance="?attr/textAppearanceHeadline6" />
 
-            <!-- <TextView
-                 android:id="@+id/tv_nested_news_description"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:text="@{model.description}"
-                 android:padding="5dp"
-                 android:textAppearance="?attr/textAppearanceBody2"
-                 android:textColor="?android:attr/textColorSecondary" />-->
+            <TextView
+                android:id="@+id/tv_nested_news_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="@{model.description}"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="?android:attr/textColorSecondary" />
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
