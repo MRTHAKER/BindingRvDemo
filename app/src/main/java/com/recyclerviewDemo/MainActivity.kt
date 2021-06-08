@@ -1,13 +1,10 @@
 package com.recyclerviewDemo
 
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import com.recyclerviewDemo.adapter.GlobalAdapter
 import com.recyclerviewDemo.databinding.ActivityMainBinding
@@ -16,8 +13,8 @@ import com.recyclerviewDemo.model.News
 import com.recyclerviewDemo.model.NewsCategory
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
-    lateinit var binding: ActivityMainBinding
-    lateinit var mainClickListener: RvClickListener
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var mainClickListener: RvClickListener
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -25,8 +22,104 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setListeners()
         binding.itemclick = mainClickListener
         binding.click = this@MainActivity
-        binding.model = News()
+        binding.model = giveModel()
+    }
 
+    private fun giveModel(): News {
+        return News(
+            listOf(
+                NewsCategory(
+                    "Entertainment",
+                    listOf(
+                        Articles(
+                            "Entertainment Article 1 Title 1",
+                            "https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo1.png",
+                            "Entertainment Article Description 1"
+                        ), Articles(
+                            "Entertainment Article Title 2",
+                            "https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo2.png",
+                            "Entertainment Article Description 2"
+                        ), Articles(
+                            "Entertainment Article Title 3",
+                            "https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo3.png",
+                            "Entertainment Article Description 3"
+                        )
+                    )
+                ),
+                NewsCategory(
+                    "Sports",
+                    listOf(
+                        Articles(
+                            "Sports Article Title 1",
+                            "https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo1.png",
+                            "Sports Article Description 1"
+                        ), Articles(
+                            "Sports Article Title 2",
+                            "https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo2.png",
+                            "Sports Article Description 2"
+                        ), Articles(
+                            "Sports Article Title 3",
+                            "https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo3.png",
+                            "Sports Article Description 3"
+                        )
+                    )
+                ),
+                NewsCategory(
+                    "Technology",
+                    listOf(
+                        Articles(
+                            "Technology Article Title 1",
+                            "https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo1.png",
+                            "Technology Article Description 1"
+                        ), Articles(
+                            "Technology Article Title 2",
+                            "https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo2.png",
+                            "Technology Article Description 2"
+                        ), Articles(
+                            "Technology Article Title 3",
+                            "https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo3.png",
+                            "Technology Article Description 3"
+                        )
+                    )
+                ),
+                NewsCategory(
+                    "Business",
+                    listOf(
+                        Articles(
+                            "Business Article Title 1",
+                            "https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo1.png",
+                            "Business Article Description 1"
+                        ), Articles(
+                            "Business Article Title 2",
+                            "https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo2.png",
+                            "Business Article Description 2"
+                        ), Articles(
+                            "Business Article Title 3",
+                            "https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo3.png",
+                            "Business Article Description 3"
+                        )
+                    )
+                ),
+                NewsCategory(
+                    "International",
+                    listOf(
+                        Articles(
+                            "International Article Title 1",
+                            "https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo1.png",
+                            "International Article Description 1"
+                        ), Articles(
+                            "International Article Title 2",
+                            "https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo2.png",
+                            "International Article Description 2"
+                        ), Articles(
+                            "International Article Title 3",
+                            "https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo3.png",
+                            "International Article Description 3"
+                        )
+                    )
+                )
+            )
+        )
     }
 
     private fun setListeners() {
@@ -44,10 +137,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                                 view as MaterialCardView
                                 adapter as GlobalAdapter<Articles>
                                 adapter.mutableList.map {
-                                    it.isChecked=false
+                                    it.isChecked = false
                                 }
-                                item.isChecked=true
-                                adapter.notifyItemRangeChanged(0,adapter.itemCount)
+                                item.isChecked = true
+                                adapter.notifyItemRangeChanged(0, adapter.itemCount)
                             }
                         }
                     }
@@ -56,7 +149,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                             R.id.rv_news_main_cv -> {
                                 view as MaterialCardView
                                 view.background.setTint(Color.CYAN)
-                                Toast.makeText(this@MainActivity,"$position",Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@MainActivity, "$position", Toast.LENGTH_SHORT)
+                                    .show()
                             }
                         }
                     }

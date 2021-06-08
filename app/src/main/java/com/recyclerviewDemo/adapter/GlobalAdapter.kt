@@ -19,7 +19,6 @@ class GlobalAdapter<T>(
     private val brs: Map<Int, Any>
 ) : RecyclerView.Adapter<GlobalAdapter<T>.ViewHolder>() {
     private lateinit var binding: ViewDataBinding
-    lateinit var holderr: ViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         binding =
             DataBindingUtil.inflate(LayoutInflater.from(parent.context), layoutId, parent, false)
@@ -27,7 +26,6 @@ class GlobalAdapter<T>(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holderr = holder
         holder.binding.setVariable(br, mutableList[holder.adapterPosition])
         brs.forEach {
             binding.setVariable(it.key, it.value)
@@ -46,11 +44,6 @@ class GlobalAdapter<T>(
     }
 
     override fun getItemCount() = mutableList.size
-
-    fun addData(list: List<T>) {
-        mutableList.addAll(list)
-        notifyDataSetChanged()
-    }
 
     inner class ViewHolder(val binding: ViewDataBinding) :
         RecyclerView.ViewHolder(binding.root)
